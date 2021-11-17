@@ -44,7 +44,8 @@ function get_GeneratedPassword() {
 /* 
   PRIVATE FUNCTIONS
 */
-// Generating password
+
+// Manages generating password
 function _generatePassword() {
   /* Reads user args, sends results */
   
@@ -52,10 +53,10 @@ function _generatePassword() {
   var decided = false; 
   
   // Get input 
-  var choices_List = _get_UserInput();
+  var choices = _get_UserInput();
+  var choices_validated = _get_ChoiceValidation(choices);
 
-
-  return choices_List;
+  return choices;
 }
 
 
@@ -63,11 +64,11 @@ function _generatePassword() {
 function _get_UserInput(){
 
   // Object holding User Input results
-  var choices_List = {
+  var choices = {
       // 1. Lowercase boolean #choice_AlphaLowercase
       choice_AlphaLowercase : (document.querySelector("#choice_AlphaLowercase").checked),
       // 2. Capital boolean  #choice_AlphaUppercase
-      choice_AlphUppercase : (document.querySelector("#choice_AlphaUppercase").checked),
+      choice_AlphaUppercase : (document.querySelector("#choice_AlphaUppercase").checked),
       // 3. Numeric boolean #choice_Numeric
       choice_Numeric : (document.querySelector("#choice_Numeric").checked),
       // 4 Special Characters boolean #choice_SpecialChar
@@ -76,11 +77,35 @@ function _get_UserInput(){
       choice_Length : (document.querySelector("#choice_Length").value),
   };
 
-  return choices_List.choice_Length;
+  return choices.choice_SpecialChar;
+};
+
+
+
+function _get_ChoiceValidation(choices){
+  console.log("test");
+  
+  Object.keys(choices).forEach( function(key) {
+    console.log("?");
+    console.log(key, obj[key]);
+  
+  });
+  
+  // true or false
+  // choices.choice_AlphaLowercase
+  // //
+  // choices.choice_AlphaUppercase
+  // //
+  // choices.choice_Numeric
+  // //
+  // choices.choice_SpecialChar
+  // //
+  // choice_Length
+  return "yes";
 };
 
 // Builds password based on user input
-function _set_Password(choices_List){
+function _set_Password(choices){
   
   var generatedPassword = '';
   
