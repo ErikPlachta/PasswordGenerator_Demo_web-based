@@ -14,9 +14,57 @@
       </header>
       <div class="card">
         <div class="card-header">
-          <h2>Generate a Password</h2>
+          <h2>Select Options below to Generate a Password</h2>
         </div>
-        <div class="card-body">
+        
+        <div class="user-choice">  
+          <!-- Alpha lowercase -->
+          <span class='userChoice'>
+            <input type='checkbox' id='choice_AlphaLowercase' name='choice_AlphaLowercase' value='AlphaLowercase' />
+             <label for='choice_AlphaLowercase'>
+               Include Lowercase Letters?
+                <span class='choiceExplained'>
+                  abcdefghijklmnopqrstuvwxyz
+                </span>
+             </label>
+           </span>  
+           <!-- Alpha lowercase -->
+          <span class='userChoice'>
+            <input type='checkbox' id='choice_AlphaUppercase' name='choice_AlphaUppercase' value='AlphaCapital' />
+             <label for='choice_AlphaUppercase'>
+                Include Uppercase Letters?
+                <span class='choiceExplained'>
+                  ABCDEFGHIJKLMNOPQRSTUVWXYZ
+                </span>
+             </label>
+           </span>
+           <!-- Numeric -->
+          <span class='userChoice'>
+            <input type='checkbox' id='choice_Numeric' name='choice_Numeric' value='AlphaCapital' />
+             <label for='choice_Numeric'>
+                Include Numbers?
+                <span class='choiceExplained'>
+                  0123456789
+                </span>
+             </label>
+           </span>  
+          <!-- Special Characters -->
+          <span class='userChoice'>
+           <input type='checkbox' id='choice_SpecialChar' name='choice_SpecialChar' value='special' />
+            <label for='choice_SpecialChar'>
+              Include Special Characters?
+              <span class='choiceExplained'>
+                !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~
+              </span>
+            </label>
+          </span>  
+          <!-- PasswordLength -->
+          <span>
+            <input type='number' id='choice_Length' name='choice_Length' value='8' min='8' max='128' />
+            <label for='choice_Length'>Set Length of Password <span class='choiceExplained'>( From 8 - 128 Characters )</span></label>
+          </span>
+        </div>
+        <div class="card-body"> 
           <textarea
             readonly
             id="password"
@@ -29,6 +77,8 @@
         </div>
       </div>
     </div>
+    
+    <!-- Running JS -->
     <script src="./assets/js/script.js"></script>
   </body>
 </html>

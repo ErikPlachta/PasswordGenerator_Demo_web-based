@@ -118,6 +118,31 @@ button[disabled] {
   overflow: hidden;
 }
 
+
+
+/* 
+  MINE
+*/
+
+.user-choice {
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.user-choice span {
+  margin: .5rem;
+}
+
+.choiceExplained {
+  float: right;
+}
+
+
+
+/*
+  MEDIA QUERIES 
+*/
 @media (max-width: 690px) {
   .btn {
     font-size: 1rem;
