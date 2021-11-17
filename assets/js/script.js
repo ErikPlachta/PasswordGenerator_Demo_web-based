@@ -35,10 +35,10 @@ generateBtn.addEventListener("click", get_GeneratedPassword);
 
 // Once Generated, write password to the #password input
 function get_GeneratedPassword() {
-  var password = _generatePassword();
-  var passwordText = document.querySelector("#password");
+  // var password = _generatePassword();
+  var passwordText = document.querySelector("#password").value= _generatePassword();
 
-  passwordText.value = password;
+  // passwordText.value = password;
 }
 
 /* 
@@ -54,16 +54,16 @@ function _generatePassword() {
   
   // Get input 
   var choices = _get_UserInput();
-  var choices_validated = _get_ChoiceValidation(choices);
+  var choices_validated = _get_ValidationResults(choices);
 
   return choices;
 }
 
-
 // Reads user input
 function _get_UserInput(){
-
   // Object holding User Input results
+
+  // Get's values from HTML Document and stores in object for validation
   var choices = {
       // 1. Lowercase boolean #choice_AlphaLowercase
       choice_AlphaLowercase : (document.querySelector("#choice_AlphaLowercase").checked),
@@ -76,32 +76,46 @@ function _get_UserInput(){
       // 5 verify password length #choice_Length
       choice_Length : (document.querySelector("#choice_Length").value),
   };
+  
+  // verify if choice was made
+  var $results = _get_ValidationResults(choices);
 
-  return choices.choice_SpecialChar;
+  // GET the password generated
+  
+  //return password to HTML
+  return $results;
 };
 
+function _get_ValidationResults(choices){
+  
+  var $results = [
+    //boolean variable to see if EU made choice.
+    choice_WasMade_bool = false,
+    // list holding key names for reference of what to generate from.
+    choices_Selected = ["test"],
+  ];
+  
+  // Itterate thru keys in obj choices
+  Object.keys(choices).forEach( function(key) {  
+    // For everything except for length
+    //if (key != "choice_Length") {
+      // check to see if at least 1 value is selected
+      if (choices[key] != true){
+        // If YES, user made a choice so true
+        $results.choice_WasMade_bool = true;
+        // console.log(key, choices[key]);
+      } 
+      // else {
+      //   console.log(key, choices[key]);
+      // }
+      
+    });
+  
+  // Object.keys(choices).forEach( function(key) {
+  //   console.log(key, choices[key]);
+  // });
 
-
-function _get_ChoiceValidation(choices){
-  console.log("test");
-  
-  Object.keys(choices).forEach( function(key) {
-    console.log("?");
-    console.log(key, obj[key]);
-  
-  });
-  
-  // true or false
-  // choices.choice_AlphaLowercase
-  // //
-  // choices.choice_AlphaUppercase
-  // //
-  // choices.choice_Numeric
-  // //
-  // choices.choice_SpecialChar
-  // //
-  // choice_Length
-  return "yes";
+  return $results;
 };
 
 // Builds password based on user input
