@@ -37,12 +37,17 @@ function generatePassword() {
     if (check_PasswordLength(choices.choice_Length)) {
       // results = "worked";
       results = get_Password(choices);
+      // document.getElementById("generate").style.backgroundColor = "green";
+      // document.getElementById("generate").innerText = "Generate Another Password";
     }
     else {
       results = "User made a choice, but password length not within params.";
+      
     }
   } else {
     results = "User MUST select an option first.";
+    document.getElementById("generate").style.backgroundColor = "hsl(360, 91%, 36%)";
+    
   }
 
   return results;

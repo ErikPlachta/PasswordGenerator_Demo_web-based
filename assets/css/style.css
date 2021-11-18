@@ -76,8 +76,7 @@ header {
   border: none;
   background-color: hsl(360, 91%, 36%);
   border-radius: 25px;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 6px 0px rgba(0, 0, 0, 0.2) 0px 1px 1px
-    0px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 6px 0px rgba(0, 0, 0, 0.2) 0px 1px 1px 0px;
   color: hsl(0, 0%, 100%);
   display: inline-block;
   font-size: 22px;
@@ -108,7 +107,7 @@ button[disabled] {
   padding-left: 15px;
   padding-right: 15px;
   padding-bottom: 85px;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   text-align: center;
   margin-top: 10px;
   margin-bottom: 10px;
@@ -116,18 +115,19 @@ button[disabled] {
   border-radius: 6px;
   resize: none;
   overflow: hidden;
+  text-align: center;
+}
+.card-header {
+  text-align: center;
 }
 
 
-
-/* 
-  MINE
-*/
+/*----------------------------------------------------------------------------*/
+/*-- User Choice Menu */
 
 .user-choice {
   display: flex;
   flex-direction: column;
-  
 }
 
 .user-choice span {
@@ -138,11 +138,42 @@ button[disabled] {
   float: right;
 }
 
+input[type=checkbox] {
+         position: relative;
+	       cursor: pointer;
+  }
+input[type=checkbox]:before {
+      content: "";
+      display: block;
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      top: 0;
+      left: 0;
+      border: 2px solid #555555;
+      border-radius: 3px;
+      background-color: white;
+}
+  input[type=checkbox]:checked:after {
+        content: "";
+        display: block;
+        width: 5px;
+        height: 10px;
+        border: solid black;
+        border-width: 0 2px 2px 0;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+        position: absolute;
+        top: 2px;
+        left: 6px;
+}
 
 
-/*
-  MEDIA QUERIES 
-*/
+
+/*----------------------------------------------------------------------------*/
+/*  MEDIA QUERIES */
+
 @media (max-width: 690px) {
   .btn {
     font-size: 1rem;
