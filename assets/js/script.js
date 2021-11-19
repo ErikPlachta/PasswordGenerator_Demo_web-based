@@ -1,3 +1,11 @@
+/*
+
+  Author: Erik Plachta
+  Date: 11/18/2021
+  Purrpose: Generate a password via JS based on user input, update HTML
+
+*/
+
 //*--------------------------------------------------------------------------*//
 //-- 1. Grab el from HTML for JS
     
@@ -12,17 +20,6 @@ generateBtn.addEventListener("click", get_GeneratedPassword);
 
 function get_GeneratedPassword() {
   // Does error-checking and provides password or instructions to uesr to HTML
-
-  var passwordText = document.querySelector("#password").value= generatePassword();
-};
-
-/*----------------------------------------------------------------------------*/
-//--  PRIVATE FUNCTIONS
-
-/*----------------------------------------------------------------------------*/
-//--  Manages generating password
-function generatePassword() {
-  /* Reads user args, sends results */
   
   //To be payload to html
   var generatedPassword = ''; 
@@ -54,8 +51,9 @@ function generatePassword() {
     generatedPassword = "User MUST select an option first.";
   };
 
-  //returning either password or message with directions
-  return generatedPassword;
+  //Updating HTML with either password or message with directions
+  document.querySelector("#password").value= generatedPassword;
+
 }
 
 /*----------------------------------------------------------------------------*/
@@ -104,9 +102,13 @@ function check_PasswordLength(choice_Length){
   var min = 8;
   var max = 128;
   choice_Length_bool = false;
+  
+  // if choice within min-max range, return true
   if (choice_Length >= min && choice_Length <= max){
     choice_Length_bool = true;
-  }
+  };
+
+  // returns bool of
   return choice_Length_bool;
 };
 
@@ -129,9 +131,10 @@ function get_Password(choices){
   // String holder for charactres based on EU's selection. ( To be split to array below)
   var char_UserSelected = ""; 
   Object.keys(choices).forEach( function(key) {
-    // if I need to pull values for spec characters
+    
+    // if key needs to pull vales from options to build password
     if(key in options){
-      // and user requested it
+      // if user requested it
       if(choices[key]){
         // build string to pick from
         char_UserSelected = char_UserSelected +options[key];
@@ -139,10 +142,10 @@ function get_Password(choices){
     }
   });
   
+  // Builds passwords based on Length of Password requested and options selected.
   for (var i=0; i < choices.choice_Length; i++){
     generatedPassword = generatedPassword + (char_UserSelected[Math.floor(Math.random() * char_UserSelected.length)]);
-  }
-  
+  };
   
   return generatedPassword;
 };
