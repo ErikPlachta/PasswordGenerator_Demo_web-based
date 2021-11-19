@@ -9,15 +9,12 @@ generateBtn.addEventListener("click", get_GeneratedPassword);
 
 //*--------------------------------------------------------------------------*//
 //-- 2. User clicks on Generate Password
-    
 
-// Once Generated, write password to the #password input
 function get_GeneratedPassword() {
-  // var password = _generatePassword();
-  var passwordText = document.querySelector("#password").value= generatePassword();
+  // Does error-checking and provides password or instructions to uesr to HTML
 
-  // passwordText.value = password;
-}
+  var passwordText = document.querySelector("#password").value= generatePassword();
+};
 
 /*----------------------------------------------------------------------------*/
 //--  PRIVATE FUNCTIONS
@@ -27,30 +24,38 @@ function get_GeneratedPassword() {
 function generatePassword() {
   /* Reads user args, sends results */
   
-  //payload to html
-  results = ''; 
-  // Get input 
+  //To be payload to html
+  var generatedPassword = ''; 
+  
+  // Get input from HTML 
   var choices = get_UserInput();
-  // Made True if at least 1 checkbox is clicked
+  
+  // Check if at least 1 box was checked 
   var choice_WasMade_bool = check_ChoiceWasMade(choices);
+  
+  // If at least 1 box checked
   if (choice_WasMade_bool) {
-    if (check_PasswordLength(choices.choice_Length)) {
-      // results = "worked";
-      results = get_Password(choices);
-      // document.getElementById("generate").style.backgroundColor = "green";
-      // document.getElementById("generate").innerText = "Generate Another Password";
-    }
-    else {
-      results = "User made a choice, but password length not within params.";
-      
-    }
-  } else {
-    results = "User MUST select an option first.";
-    document.getElementById("generate").style.backgroundColor = "hsl(360, 91%, 36%)";
-    
-  }
 
-  return results;
+    // Verify password length
+    if (check_PasswordLength(choices.choice_Length)) {
+      
+      //
+      generatedPassword = get_Password(choices);
+    }
+    
+    // Length is either too short or too long
+    else {   
+      generatedPassword = "User made a choice, but password length not within params.";
+    }
+  }
+  // User did not check any check-box
+  else {
+    // Messsage to user
+    generatedPassword = "User MUST select an option first.";
+  };
+
+  //returning either password or message with directions
+  return generatedPassword;
 }
 
 /*----------------------------------------------------------------------------*/
